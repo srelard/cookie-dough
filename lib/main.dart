@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         label: Text('Approve'),
         icon: Icon(Icons.thumb_up),
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.amber,
       ),
     );
   }
