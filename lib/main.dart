@@ -1,75 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
+import 'package:progress_state_button/iconed_button.dart';
+import 'package:progress_state_button/progress_button.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class FeedScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  _FeedScreenState createState() => _FeedScreenState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        backgroundColor: Color(0xFFEDF0F6),
+        body: ListView(
+          physics: AlwaysScrollableScrollPhysics(),
           children: <Widget>[
-            Text(
-              'You have pushed the button this so many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text(
-              'Push harder!!',
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Placgram KekskuchenTeig",
+                        style: TextStyle(fontFamily: "Billabong", fontSize: 32),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(Icons.live_tv),
+                              iconSize: 30,
+                              onPressed: () => print("IGTV")),
+                          SizedBox(width: 16),
+                          IconButton(
+                              icon: Icon(Icons.send),
+                              iconSize: 30,
+                              onPressed: () => print("Direct Message")),
+                          LikeButton(),
+                        ],
+                      )
+                    ],
+                  ),
+                  ProgressButton.icon(iconedButtons: {
+                    ButtonState.idle: IconedButton(
+                        text: "Send",
+                        icon: Icon(Icons.send, color: Colors.white),
+                        color: Colors.deepPurple.shade500),
+                    ButtonState.loading: IconedButton(
+                        text: "Loading", color: Colors.deepPurple.shade700),
+                    ButtonState.fail: IconedButton(
+                        text: "Failed",
+                        icon: Icon(Icons.cancel, color: Colors.white),
+                        color: Colors.red.shade300),
+                    ButtonState.success: IconedButton(
+                        text: "Success",
+                        icon: Icon(
+                          Icons.check_circle,
+                          color: Colors.white,
+                        ),
+                        color: Colors.green.shade400)
+                  })
+                ],
+              ),
             ),
           ],
-        ),
-      ),
-      // This trailing comma makes auto-formatting nicer for build methods.
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        label: Text('Approve'),
-        icon: Icon(Icons.thumb_up),
-        backgroundColor: Colors.pinkAccent,
-      ),
-    );
+        ));
   }
+}
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: 'Placegram',
+      home: FeedScreen(),
+    ),
+  );
 }
