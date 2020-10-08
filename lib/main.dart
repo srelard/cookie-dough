@@ -1,80 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
-import 'package:progress_state_button/iconed_button.dart';
-import 'package:progress_state_button/progress_button.dart';
-
-class FeedScreen extends StatefulWidget {
-  @override
-  _FeedScreenState createState() => _FeedScreenState();
-}
-
-class _FeedScreenState extends State<FeedScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color(0xFFEDF0F6),
-        body: ListView(
-          physics: AlwaysScrollableScrollPhysics(),
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Placgram KekskuchenTeig",
-                        style: TextStyle(fontFamily: "Billabong", fontSize: 32),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                              icon: Icon(Icons.live_tv),
-                              iconSize: 30,
-                              onPressed: () => print("IGTV")),
-                          SizedBox(width: 16),
-                          IconButton(
-                              icon: Icon(Icons.send),
-                              iconSize: 30,
-                              onPressed: () => print("Direct Message")),
-                          LikeButton(),
-                        ],
-                      )
-                    ],
-                  ),
-                  ProgressButton.icon(iconedButtons: {
-                    ButtonState.idle: IconedButton(
-                        text: "Send",
-                        icon: Icon(Icons.send, color: Colors.white),
-                        color: Colors.deepPurple.shade500),
-                    ButtonState.loading: IconedButton(
-                        text: "Loading", color: Colors.deepPurple.shade700),
-                    ButtonState.fail: IconedButton(
-                        text: "Failed",
-                        icon: Icon(Icons.cancel, color: Colors.white),
-                        color: Colors.red.shade300),
-                    ButtonState.success: IconedButton(
-                        text: "Success",
-                        icon: Icon(
-                          Icons.check_circle,
-                          color: Colors.white,
-                        ),
-                        color: Colors.green.shade400)
-                  })
-                ],
-              ),
-            ),
-          ],
-        ));
-  }
-}
+import 'package:keks_kuchen_teig/config/palette.dart';
+import 'package:keks_kuchen_teig/screens/screens.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      title: 'Placegram',
-      home: FeedScreen(),
-    ),
-  );
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Placegram - explore places nearby',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: Palette.scaffold),
+      home: HomeScreen(),
+    );
+  }
 }

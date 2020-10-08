@@ -23,13 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  like_button: ^1.0.3
-  flutter_reaction_button: ^1.0.5
-  progress_state_button: ^1.0.1
-  curved_navigation_bar: ^0.3.4
-
-
-
+  cached_network_image: ^2.2.0+1
+  material_design_icons_flutter: ^4.0.5345
 
 
   # The following adds the Cupertino Icons font to your application.
